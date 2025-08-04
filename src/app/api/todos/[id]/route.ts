@@ -41,10 +41,9 @@ const putSchema = yup.object({
 });
 
 export async function PUT(request: NextRequest, { params }: Segments) {
-
     try {
-        const { id } = params;
-        const todo = await prisma.todo.findFirst({ where: { id: id } });
+        const { id } = await params;
+        const todo = await getTodo(id);
 
         if( !todo ) {
             return NextResponse.json({ message: `No existe un todo con id ${id}` }, { status: 400 });
@@ -53,7 +52,7 @@ export async function PUT(request: NextRequest, { params }: Segments) {
         const { completed, description } = await putSchema.validate(await request.json());
 
         const updatedTodo = await prisma.todo.update({
-            where: { id },
+            where: { id: id },
             data: { 
                 completed,
                 description

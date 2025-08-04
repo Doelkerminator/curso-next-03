@@ -1,4 +1,4 @@
-import { TodoGrid } from "@/components/todos";
+import { NewTodo, TodoGrid } from "@/components/todos";
 import prisma from "@/lib/prisma";
 import { Metadata } from "next";
 
@@ -15,6 +15,9 @@ export default async function TodosPage() {
 
     return (
         <div>
+            <div className="w-full px-3 mx-4 mb-4">
+                <NewTodo />
+            </div>
             <TodoGrid todos={ todos }/>
         </div>
     );
