@@ -4,7 +4,8 @@ import React from 'react'
 import { CiBookmarkCheck, CiLogout } from 'react-icons/ci'
 import { IoCompass } from 'react-icons/io5'
 import { SidebarItem } from './SidebarItem'
-import { FaClipboardList, FaServer } from 'react-icons/fa'
+import { FaServer } from 'react-icons/fa'
+import { BiCookie, BiShoppingBag } from 'react-icons/bi'
 
 const menuItems = [
     {
@@ -18,15 +19,25 @@ const menuItems = [
         label: 'Todos'
     },
     {
-        href: '/dashboard/server-actions',
+        href: '/dashboard/server-todos',
         icon: <FaServer size={30} />,
         label: 'Server Actions'
+    },
+    {
+        href: '/dashboard/cookies',
+        icon: <BiCookie size={30} />,
+        label: 'Cookies'
+    },
+    {
+        href: '/dashboard/products',
+        icon: <BiShoppingBag size={30} />,
+        label: 'Products'
     }
 ];
 
 export const Sidebar = () => {
     return (
-        <aside className="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
+        <aside className="overflow-auto ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
             <div>
                 <div className="-mx-6 px-6 py-4">
                     <Link href="/dashboard" title="home" className='flex items-center'>
@@ -35,13 +46,13 @@ export const Sidebar = () => {
                     </Link>
                 </div>
 
-                <div className="mt-8 text-center">
+                <div className="mt-2 text-center">
                     <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmLcucaM34tHFK40M9EYGkF1UsI-8CpNglHA&s" alt="jochua" width={50} height={50} className="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28" />
                     <h5 className="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">Inge Luis C. Martin</h5>
                     <span className="hidden text-gray-400 lg:block">Admin</span>
                 </div>
 
-                <ul className="space-y-2 tracking-wide mt-8">
+                <ul className="space-y-2 tracking-wide mt-4">
                     {
                         menuItems.map((item, index) => (
                             <SidebarItem 

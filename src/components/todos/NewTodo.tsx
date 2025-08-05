@@ -1,25 +1,17 @@
 'use client';
 
 import { IoTrashOutline } from "react-icons/io5";
-import * as todosApi from '@/helpers/todos';
-import { useRouter } from "next/navigation";
+import { addTodo, deleteTodos } from "./actions/todo-actions";
 
 export const NewTodo = () => {
-    const router = useRouter();
-
     const createTodo = async(formData: FormData) => {
         const description = formData.get("description");
-        todosApi.createTodo(description as string);
-        router.refresh();
+        await addTodo(description as string);
     }
 
     const deleteCompleted = async() => {
-        if(!confirm("¿Eliminar completados?")) {
-            return;
-        }
-
-        await todosApi.deleteTodos();
-        router.refresh();
+        if(!confirm("¿Eliminar completados?")) { return; }
+        await deleteTodos();
     }
 
     return (
@@ -37,7 +29,7 @@ export const NewTodo = () => {
             <span className='flex flex-1'></span>
 
             <button
-                onClick={deleteCompleted}
+                onClick={ deleteCompleted }
                 type='button' className="flex items-center justify-center rounded ml-2 bg-red-400 p-2 text-white hover:bg-red-700 transition-all">
                 <IoTrashOutline />
                 Delete completed
